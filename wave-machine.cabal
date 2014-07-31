@@ -1,0 +1,28 @@
+name:           wave-machine
+version:        0.1
+cabal-version:  >= 1.12
+build-type:     Simple
+author:         Jacob Page
+
+executable wave-machine
+  hs-source-dirs:  src
+  main-is:         Main.hs
+  build-depends:   base >= 4
+  ghc-options:     -Wall
+  other-modules:   
+                   Main,
+                   WaveMachine.Audio.Pitch,
+                   WaveMachine.Audio.Volume
+
+library 
+  build-depends:   
+	base >= 4
+  hs-source-dirs:  src
+  ghc-options:     -Wall
+  exposed-modules: 
+                   Main,
+                   WaveMachine.Audio.Tones
+  other-modules:   
+                   WaveMachine.Audio.Pitch,
+                   WaveMachine.Audio.Volume
+
