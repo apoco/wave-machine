@@ -1,0 +1,10 @@
+# Eclipse
+.dist-buildwrapper
+.project
+.settings
+
+# Build artifacts
+*.hi
+*.o
+wave-machine
+

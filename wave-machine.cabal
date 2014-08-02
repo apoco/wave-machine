@@ -12,7 +12,8 @@ executable wave-machine
   other-modules:   
                    Main,
                    WaveMachine.Audio.Pitch,
-                   WaveMachine.Audio.Volume
+                   WaveMachine.Audio.Volume,
+                   WaveMachine.Sampling
 
 library 
   build-depends:   
@@ -24,5 +25,6 @@ library
                    WaveMachine.Audio.Tones
   other-modules:   
                    WaveMachine.Audio.Pitch,
-                   WaveMachine.Audio.Volume
+                   WaveMachine.Audio.Volume,
+                   WaveMachine.Sampling
 
