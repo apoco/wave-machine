@@ -8,3 +8,7 @@
 *.o
 wave-machine
 
+# gh-pages
+Gemfile.lock
+_site
+
