@@ -13,7 +13,9 @@ executable wave-machine
                    Main,
                    WaveMachine.Audio.Pitch,
                    WaveMachine.Audio.Volume,
-                   WaveMachine.Sampling
+                   WaveMachine.Sampling,
+                   WaveMachine.Builders
+  extensions:      OverloadedRecordFields
 
 library 
   build-depends:   
@@ -26,5 +28,6 @@ library
   other-modules:   
                    WaveMachine.Audio.Pitch,
                    WaveMachine.Audio.Volume,
-                   WaveMachine.Sampling
+                   WaveMachine.Sampling,
+                   WaveMachine.Builders
 
