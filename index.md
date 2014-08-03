@@ -9,7 +9,7 @@ The `wave-machine` project is a way for me to learn more about sound and the Has
   <ul>
     {% for post in site.posts reversed %}
       <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
+        <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
       </li>
     {% endfor %}
   </ul>

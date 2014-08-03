@@ -2,11 +2,11 @@
   <ul>
     <li>
       {% if page.previous %}
-        Previous: <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+        Previous: <a href="{{ site.url }}{{ page.previous.url }}">{{ page.previous.title }}</a>
       {% endif %}
     </li><li>
       {% if page.next %}
-        Next: <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+        Next: <a href="{{ site.url }}{{ page.next.url }}">{{ page.next.title }}</a>
       {% endif %}
     </li>
   </ul>
