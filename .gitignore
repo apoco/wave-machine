@@ -1,0 +1,6 @@
+.dist-buildwrapper
+.project
+.settings
+Gemfile.lock
+_site
+
