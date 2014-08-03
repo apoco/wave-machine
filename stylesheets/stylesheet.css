@@ -68,7 +68,7 @@ header {
   padding-bottom: 25px;
 }
 
-header h1 {
+header a h1 {
   font-family: 'Chivo', 'Helvetica Neue', Helvetica, Arial, serif; font-weight: 900;
   letter-spacing: -1px;
   font-size: 48px;
@@ -76,7 +76,7 @@ header h1 {
   line-height: 1.2;
 }
 
-header h2 {
+header a h2 {
   letter-spacing: -1px;
   font-size: 24px;
   color: #aaa;
