@@ -12,6 +12,7 @@ channels = 1
 sampleRate = 44100
 bitDepth = 16
 samples = sampleInt16 audioFn sampleRate 5
+waveFile = WaveFile channels sampleRate bitDepth samples
 
 main :: IO ()
-main = hPutBuilder stdout $ waveFileBuilder $ WaveFile channels sampleRate bitDepth samples
+main = hPutBuilder stdout $ waveFilePcm16Builder waveFile
