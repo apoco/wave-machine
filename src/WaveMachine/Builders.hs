@@ -12,7 +12,7 @@ data WaveFile a = WaveFile Int Int Int [a] -- channels, sampleRate, bitDepth, sa
 
 data RiffFile = RiffFile [RiffChunk]
 
-data RiffHeader = RiffHeader String Int64
+data RiffHeader = RiffHeader String Int
 
 data RiffChunk =
     RiffChunk RiffHeader [Word8]
@@ -75,17 +75,17 @@ riffHeaderBuilder (RiffHeader tag size) = mconcat [
     word32LE $ fromIntegral size ]
 
 
-sizeOfRiffChunks :: [RiffChunk] -> Int64
+sizeOfRiffChunks :: [RiffChunk] -> Int
 sizeOfRiffChunks chunks = sum $ map sizeOfRiffChunk chunks
 
-sizeOfRiffChunk :: RiffChunk -> Int64
+sizeOfRiffChunk :: RiffChunk -> Int
 sizeOfRiffChunk chunk = sizeOfRiffHeader + (sizeOfRiffContent chunk)
 
-sizeOfRiffHeader :: Int64
+sizeOfRiffHeader :: Int
 sizeOfRiffHeader = 8
 
-sizeOfRiffContent :: RiffChunk -> Int64
-sizeOfRiffContent (RiffChunk _ bytes)             = fromIntegral $ length bytes
+sizeOfRiffContent :: RiffChunk -> Int
+sizeOfRiffContent (RiffChunk _ bytes)             = length bytes
 sizeOfRiffContent (RiffFormChunk _ chunks)        = 4 + (sizeOfRiffChunks chunks) 
-sizeOfRiffContent (WaveFormatChunk _ _ _ _ extra) = 18 + (fromIntegral $ length extra)
+sizeOfRiffContent (WaveFormatChunk _ _ _ _ extra) = 18 + (length extra)
 sizeOfRiffContent (WaveInt16SamplesChunk samples) = fromIntegral $ 2 * (length samples)
