@@ -22,9 +22,7 @@ library
 	base >= 4
   hs-source-dirs:  src
   ghc-options:     -Wall
-  exposed-modules: 
-                   Main,
-                   WaveMachine.Audio.Tones
+  exposed-modules: Main
   other-modules:   
                    WaveMachine.Audio.Pitch,
                    WaveMachine.Audio.Volume,

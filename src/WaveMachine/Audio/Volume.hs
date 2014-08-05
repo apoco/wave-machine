@@ -1,4 +1,6 @@
 module WaveMachine.Audio.Volume where
 
-applyVolume :: Double -> (Double -> Double) -> (Double -> Double)
+import WaveMachine.Audio.Waves
+
+applyVolume :: Double -> WaveFunction -> WaveFunction
 applyVolume volume orig = \t -> (orig t) * volume
