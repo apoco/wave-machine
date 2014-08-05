@@ -24,14 +24,14 @@ octaveIndex Bf = 10
 octaveIndex B  = 11
 
 toneIndex :: Tone -> Int -> Int
-toneIndex tone octave = 12 * (octave - 4) + ((octaveIndex tone) - 9) 
+toneIndex tone octave = 12 * (octave - 4) + (octaveIndex tone - 9) 
 
 a4 = 440
 
 toneFrequency :: Tone -> Int -> Double
-toneFrequency tone octave = a4 * (2.0 ** ((fromIntegral $ toneIndex tone octave) / 12.0))
+toneFrequency tone octave = a4 * (2.0 ** (fromIntegral (toneIndex tone octave) / 12.0))
 
 applyPitch :: Double -> WaveFunction -> WaveFunction
-applyPitch pitch orig = \t -> orig (t * pitch)
+applyPitch pitch orig t = orig (t * pitch)
 
 middleC = toneFrequency C 4

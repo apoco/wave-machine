@@ -5,7 +5,7 @@ import Data.Int
 sampleTimes :: Int -> Double -> Double -> [Double]
 sampleTimes frequency start end
     | start > end = []
-    | otherwise = start:(sampleTimes frequency (start + (1.0 / (fromIntegral frequency))) end)
+    | otherwise = start : sampleTimes frequency (start + (1.0 / fromIntegral frequency)) end
 
 sample :: (Double -> Double) -> Int -> Double -> [Double]
 sample audioFn frequency duration = [audioFn t | t <- sampleTimes frequency 0 duration]

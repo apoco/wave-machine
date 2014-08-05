@@ -42,31 +42,30 @@ riffFileBuilder (RiffFile chunks) = mconcat $ map riffChunkBuilder chunks
 riffChunkBuilder :: RiffChunk -> Builder
 
 riffChunkBuilder (RiffChunk header bytes) = mconcat ( 
-    (riffHeaderBuilder header)
-    : (map word8 bytes))
+    riffHeaderBuilder header : map word8 bytes)
 
 riffChunkBuilder (RiffFormChunk form chunks) = mconcat ( 
     [
-        riffHeaderBuilder (RiffHeader "RIFF" (4 + (sizeOfRiffChunks chunks))),
+        riffHeaderBuilder (RiffHeader "RIFF" (4 + sizeOfRiffChunks chunks)),
         string8 "WAVE"
-    ] ++ (map riffChunkBuilder chunks))
+    ]
+    ++ map riffChunkBuilder chunks)
 
 riffChunkBuilder (WaveFormatChunk format channels sampleRate bitDepth extraBytes) = 
-    mconcat ([ 
-        riffHeaderBuilder $ RiffHeader "fmt " (fromIntegral $ 18 + (length extraBytes)), 
-        word16LE $ fromIntegral format,                             -- 1 = PCM
-        word16LE $ fromIntegral channels,                           -- Channels
-        word32LE $ fromIntegral sampleRate,                         -- Sample rate (Hz)
-        word32LE $ fromIntegral $ sampleRate * channelsSampleSize,  -- Byte rate (all channels)
-        word16LE $ fromIntegral channelsSampleSize,                 -- Bytes per sample (all channels)
-        word16LE $ fromIntegral bitDepth,                           -- Bits per sample
-        word16LE $ fromIntegral $ length extraBytes                 -- Size of extra data
-    ] ++ (map word8 extraBytes))
+    mconcat ([
+        riffHeaderBuilder $ RiffHeader "fmt " (fromIntegral $ 18 + length extraBytes),
+        word16LE $ fromIntegral format, word16LE $ fromIntegral channels,
+        word32LE $ fromIntegral sampleRate,
+        word32LE $ fromIntegral $ sampleRate * channelsSampleSize,
+        word16LE $ fromIntegral channelsSampleSize,
+        word16LE $ fromIntegral bitDepth,
+        word16LE $ fromIntegral $ length extraBytes
+    ] ++ map word8 extraBytes)
     where channelsSampleSize = channels * (bitDepth `div` 8)
 
 riffChunkBuilder (WaveInt16SamplesChunk samples) = mconcat (
-    riffHeaderBuilder (RiffHeader "data" (2 * (fromIntegral $ length samples)))
-    : (map int16LE samples))
+    riffHeaderBuilder (RiffHeader "data" (2 * fromIntegral (length samples)))
+    : map int16LE samples)
 
 
 riffHeaderBuilder :: RiffHeader -> Builder
@@ -74,18 +73,17 @@ riffHeaderBuilder (RiffHeader tag size) = mconcat [
     string8 tag, 
     word32LE $ fromIntegral size ]
 
-
 sizeOfRiffChunks :: [RiffChunk] -> Int
 sizeOfRiffChunks chunks = sum $ map sizeOfRiffChunk chunks
 
 sizeOfRiffChunk :: RiffChunk -> Int
-sizeOfRiffChunk chunk = sizeOfRiffHeader + (sizeOfRiffContent chunk)
+sizeOfRiffChunk chunk = sizeOfRiffHeader + sizeOfRiffContent chunk
 
 sizeOfRiffHeader :: Int
 sizeOfRiffHeader = 8
 
 sizeOfRiffContent :: RiffChunk -> Int
 sizeOfRiffContent (RiffChunk _ bytes)             = length bytes
-sizeOfRiffContent (RiffFormChunk _ chunks)        = 4 + (sizeOfRiffChunks chunks) 
-sizeOfRiffContent (WaveFormatChunk _ _ _ _ extra) = 18 + (length extra)
-sizeOfRiffContent (WaveInt16SamplesChunk samples) = fromIntegral $ 2 * (length samples)
+sizeOfRiffContent (RiffFormChunk _ chunks)        = 4 + sizeOfRiffChunks chunks 
+sizeOfRiffContent (WaveFormatChunk _ _ _ _ extra) = 18 + length extra
+sizeOfRiffContent (WaveInt16SamplesChunk samples) = fromIntegral $ 2 * length samples

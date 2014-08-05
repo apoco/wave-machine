@@ -11,4 +11,4 @@ sineWave t = sin (t * 2 * pi)
 addWaves :: [WaveFunction] -> WaveFunction
 addWaves [] = nullWave
 addWaves (w:[]) = w
-addWaves (w:ws) = \t -> (w t) + (addWaves ws $ t)
+addWaves (w:ws) = \t -> w t + addWaves ws t
