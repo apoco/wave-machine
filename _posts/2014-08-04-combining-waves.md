@@ -79,7 +79,7 @@ the next tone, a "half-step" in music theory, we multiply (or divide to go down 
 2<sup>1/12</sup>. I'm not a math wizard, but I figured out how this works. Let's say we're going up a *whole* step. This would mean we multiply
 twice: `n * 2^(1/12) * 2^(1/12)`. In algebra, we learn that `a^n * a^m = a^(n+m)`. Thus, going up a whole step is `n * 2^(2/12)`. An octave, being
 12 half-steps, means `n * 2^(12/12)`, which simplifies to `n * 2^1`, which is the same as `n * 2`. So the notes in an octave are *twice* the
-frequency of the notes in the octave below them. This might explain why two notes in the same octave sound so similar.
+frequency of the notes in the octave below them. This might explain why the same tone in two octaves sound so similar.
 
 So basically, in a nut shell, the frequency for tones is a *geometric* series, with an even geometric increase between tones. What are these *tones*
 I refer to? If you're already acquainted with basic music theory, you can skip this part. In Western music, each "octave" is made up of 12 tones,
