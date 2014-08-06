@@ -8,7 +8,7 @@ import WaveMachine.Builders
 import WaveMachine.Sampling
 
 audioFn :: Double -> Double
-audioFn = applyVolume 0.3 $ addWaves [
+audioFn = addWaves [
     applyPitch (toneFrequency C 4) sineWave,
     applyPitch (toneFrequency E 4) sineWave,
     applyPitch (toneFrequency G 4) sineWave ]
