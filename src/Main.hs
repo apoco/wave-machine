@@ -7,7 +7,7 @@ import WaveMachine.Audio.Waves
 import WaveMachine.Builders
 import WaveMachine.Sampling
 
-audioFn :: Double -> Double
+audioFn :: WaveFunction
 audioFn = addWaves [
     applyPitch (toneFrequency C 4) sineWave,
     applyPitch (toneFrequency E 4) sineWave,
