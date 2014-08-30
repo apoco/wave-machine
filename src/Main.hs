@@ -15,16 +15,18 @@ notes = [
     (2,A,4), (1,G,4), (1,F, 4), (2,G, 4), (2,A,4),
     (1,G,4), (1,F,4), (1,E, 4), (1,F, 4), (4,D,3) ]
 
-noteLenth :: Double
-noteLenth = 0.25
-
-playNote :: (WaveFunction,Double) -> (Int,Tone,Int) -> (WaveFunction,Double)
-playNote (currentSeq,pos) (dur,tone,oct) = (
-    addWaves currentSeq (delay pos $ clip (fromIntegral dur * noteLenth) $ applyTone tone oct sineWave), 
-    pos + fromIntegral dur * noteLenth)
+noteLength :: Double
+noteLength = 0.25
 
 audioSeq :: [(Int,Tone,Int)] -> (WaveFunction,Double)
 audioSeq = foldl playNote (nullWave, 0)
+
+playNote :: (WaveFunction,Double) -> (Int,Tone,Int) -> (WaveFunction,Double)
+playNote (currentSeq,pos) (dur,tone,oct) = 
+    (addWaves currentSeq thisNote, pos + duration)
+    where 
+        duration = fromIntegral dur * noteLength
+        thisNote = delay pos $ clip duration $ applyTone tone oct sineWave
 
 channels :: Int
 channels = 1
