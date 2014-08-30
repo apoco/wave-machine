@@ -171,6 +171,6 @@ sox -b 16 -e signed-integer --endian little -r 44100 sine.raw sine.wav
 
 You can play the file here:
 
-<audio src="/audio/first-sine-wave.wav" controls/>
+<audio src="{{site.url}}/audio/first-sine-wave.wav" controls/>
 
 In the next article, I'll help us avoid this inconvenient step and write out a wave file directly.
