@@ -194,6 +194,8 @@ For our wave function, we apply our frequencies to three sine waves, add them to
 
 We now hear a chord!
 
+<audio src="{{site.url}}/audio/chord.wav" controls/>
+
 To see the code for this article, check out the [article-3](https://github.com/apoco/wave-machine/tree/article-3) branch.
 
 I'm not really happy with this 30% volume business. I want to combine waves without worrying about the overall effect. In the next article, I'm
