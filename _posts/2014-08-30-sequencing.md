@@ -86,6 +86,8 @@ samples = sampleInt16 melody sampleRate dur
 
 And now we some something resembling music!
 
+<audio src="{{site.url}}/audio/sequence.wav" controls/>
+
 To see the code in its entirety, check out the [article-5 branch](https://github.com/apoco/wave-machine/tree/article-5) of the `wave-machine`
 repository.
 
