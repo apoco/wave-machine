@@ -8,7 +8,8 @@ nullWave _ = 0
 sineWave :: WaveFunction
 sineWave t = sin (t * 2 * pi)
 
-addWaves :: [WaveFunction] -> WaveFunction
-addWaves [] = nullWave
-addWaves (w:[]) = w
-addWaves (w:ws) = \t -> w t + addWaves ws t
+addWaves :: WaveFunction -> WaveFunction -> WaveFunction
+addWaves a b t = a t + b t
+
+combineWaves :: [WaveFunction] -> WaveFunction
+combineWaves = foldl addWaves nullWave

@@ -5,8 +5,6 @@ import Data.Int
 import Data.Monoid
 import Data.Word
 
-import qualified Data.ByteString.Lazy as Lazy
-
 
 data WaveFile a = WaveFile Int Int Int [a] -- channels, sampleRate, bitDepth, samples
 
@@ -21,6 +19,7 @@ data RiffChunk =
     | WaveInt16SamplesChunk [Int16]
 
 
+pcmFormat :: Int
 pcmFormat = 1    
 
 riffFileForWavePcm16 :: WaveFile Int16 -> RiffFile
@@ -47,7 +46,7 @@ riffChunkBuilder (RiffChunk header bytes) = mconcat (
 riffChunkBuilder (RiffFormChunk form chunks) = mconcat ( 
     [
         riffHeaderBuilder (RiffHeader "RIFF" (4 + sizeOfRiffChunks chunks)),
-        string8 "WAVE"
+        string8 form
     ]
     ++ map riffChunkBuilder chunks)
 
