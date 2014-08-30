@@ -29,6 +29,10 @@ audioFn = addWaves [
     applyPitch (toneFrequency G 4) sineWave ]
 ```
 
+Here's the output we get when running `wave-machine`:
+
+<audio src="{{site.url}}/audio/amp-adjusted.wav" controls/>
+
 To see the code for this article, check out the [article-4](https://github.com/apoco/wave-machine/tree/article-4) branch.
 
 Next, I'm going to going to add *sequencing* to my experiment code.
