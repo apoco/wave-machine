@@ -162,11 +162,15 @@ Now you can run the generated `wave-machine` executable. But wait! Don't just ru
 ./wave-machine > sine.raw
 ```
 
-This will give us a binary file containing nothing but our raw samples. Not very exciting. I don't know of any audio players that can play a raw file. At a later time, we can update the code to write to a real audio file, but for now, let's use a program called sox to convert this raw file to a WAV.
+This will give us a binary file containing nothing but our raw samples. Not very exciting. I don't know of any audio players that can play a raw file.
+At a later time, we can update the code to write to a real audio file, but for now, let's use a program called sox to convert this raw file to a WAV.
 
 ```bash
 sox -b 16 -e signed-integer --endian little -r 44100 sine.raw sine.wav
 ```
 
-In the next article, I'll help us avoid this inconvenient step and write out a wave file directly.
+You can play the file here:
 
+<audio src="/audio/first-sine-wave.wav" controls/>
+
+In the next article, I'll help us avoid this inconvenient step and write out a wave file directly.
