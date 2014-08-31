@@ -43,7 +43,7 @@ notes = [
 ```
 
 The duration value is an integer for the sake of simplicity; I'll be treating each unit like an eighth note. Each eighth note will be a quarter
-of a second:re
+of a second:
 
 ```haskell
 noteLenth :: Double
