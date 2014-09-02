@@ -7,13 +7,21 @@ import WaveMachine.Audio.Waves
 import WaveMachine.Builders
 import WaveMachine.Sampling
 
-notes :: [(Int,Tone,Int)]
-notes = [
+rhNotes :: [(Int,Tone,Int)]
+rhNotes = [
     (1,D,5), (1,E,5), 
     (2,F,5), (1,E,5), (1,D, 5), (2,Cs,5), (1,D,5), (1,E, 5),
     (2,A,4), (1,B,4), (1,Cs,5), (2,D, 5), (1,C,5), (1,Bf,4),
     (2,A,4), (1,G,4), (1,F, 4), (2,G, 4), (2,A,4),
     (1,G,4), (1,F,4), (1,E, 4), (1,F, 4), (4,D,4) ]
+
+lhNotes :: [(Int,Tone,Int)]
+lhNotes = [
+    (1,F,3), (1,E,3), 
+    (2,D,3), (2,F,3), (2,A, 3), (2,G, 3),
+    (2,F,3), (2,E,3), (2,D ,3), (2,C, 3),
+    (2,F,3), (2,A,3), (2,G, 3), (2,Cs,3),
+    (8,D,3)]
 
 noteLength :: Double
 noteLength = 0.25
@@ -38,8 +46,10 @@ bitDepth :: Int
 bitDepth = 16
 
 samples :: [Int16]
-samples = sampleInt16 melody sampleRate dur
-    where (melody,dur) = audioSeq notes
+samples = sampleInt16 (addWaves rhAudio lhAudio) sampleRate dur
+    where 
+        (rhAudio,dur) = audioSeq rhNotes
+        (lhAudio,_) = audioSeq lhNotes
 
 waveFile :: WaveFile Int16
 waveFile = WaveFile channels sampleRate bitDepth samples
