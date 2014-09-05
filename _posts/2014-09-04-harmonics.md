@@ -133,7 +133,6 @@ squareWave t
     | t < 0.5   =  1
     | t < 1.0   = -1 
     | otherwise = squareWave $ periodic t
-```
 
 voice = squareWave
 ```
