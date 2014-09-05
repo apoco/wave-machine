@@ -3,9 +3,23 @@ import Data.Int
 import System.IO
 import WaveMachine.Audio.Pitch
 import WaveMachine.Audio.Sequencing
+import WaveMachine.Audio.Voices
 import WaveMachine.Audio.Waves
 import WaveMachine.Builders
 import WaveMachine.Sampling
+
+voice :: WaveFunction
+--voice = sineWave
+--voice = addHarmonic 2
+--voice = addHarmonic 3
+--voice = addHarmonic 4
+--voice = addHarmonic 5
+--voice = addHarmonic 6
+--voice = addHarmonics [2..6]
+--voice = addHarmonics [3, 5, 7, 9]
+--voice = addHarmonics [2, 4, 8, 16]
+--voice = squareWave
+voice = sawtoothWave
 
 rhNotes :: [(Int,Tone,Int)]
 rhNotes = [
@@ -34,7 +48,7 @@ playNote (currentSeq,pos) (dur,tone,oct) =
     (addWaves currentSeq thisNote, pos + duration)
     where 
         duration = fromIntegral dur * noteLength
-        thisNote = delay pos $ clip duration $ applyTone tone oct sineWave
+        thisNote = delay pos $ clip duration $ applyTone tone oct voice
 
 channels :: Int
 channels = 1
